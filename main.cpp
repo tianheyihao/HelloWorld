@@ -1,13 +1,32 @@
 #include <iostream>
 
-void sort(int arr[],int size)
-{
-
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
-int main(void) {
-    int  arr[] = {1,2,3,4,5,6};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    sort(arr,size);
+void sort(int arr[], int size) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size - 1 - i; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+}
+
+void print(int arr[], int size) {
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    int arr[] = {6, 5, 4, 3, 2, 1};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    sort(arr, size);
+    print(arr, size);
     return 0;
 }
